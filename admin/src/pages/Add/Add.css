@@ -1,0 +1,88 @@
+.add {
+  width: 70%;
+  margin-left: max(5vw, 25px);
+  margin-top: 40px;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.add h1 {
+  color: var(--text-primary);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.add form { gap: 20px; }
+
+.add-img-upload img {
+  width: 120px;
+  border-radius: 10px;
+  border: 2px dashed var(--border);
+}
+
+.add-product-name,
+.add-product-description {
+  width: max(40%, 280px);
+}
+
+.add-product-name input,
+.add-product-description textarea {
+  padding: 11px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.add-product-name input:focus,
+.add-product-description textarea:focus {
+  border-color: var(--accent);
+}
+
+.add-product-name input::placeholder,
+.add-product-description textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.add-category-price {
+  display: flex;
+  gap: 24px;
+}
+
+.add-category-price select,
+.add-category-price input {
+  max-width: 140px;
+  padding: 10px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  outline: none;
+  font-size: 14px;
+}
+
+.add-category-price select option { background: var(--bg-card); }
+
+.add-btn {
+  max-width: 140px;
+  border: none;
+  padding: 12px 24px;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s;
+  box-shadow: 0 4px 16px rgba(255,107,53,0.3);
+}
+
+.add-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
