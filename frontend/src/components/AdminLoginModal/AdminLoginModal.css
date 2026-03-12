@@ -1,0 +1,78 @@
+.alm-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(0,0,0,0.75);
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.2s ease;
+}
+
+.alm-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+  animation: fadeIn 0.25s ease;
+}
+
+.alm-header { text-align: center; margin-bottom: 28px; }
+.alm-icon { font-size: 48px; margin-bottom: 12px; }
+.alm-header h2 { font-size: 22px; font-weight: 800; color: var(--text-primary); margin-bottom: 6px; }
+.alm-header p  { color: var(--text-muted); font-size: 14px; }
+
+.alm-form { display: flex; flex-direction: column; gap: 16px; }
+
+.alm-field { display: flex; flex-direction: column; gap: 6px; }
+.alm-field label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.alm-field input {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 14px;
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.alm-field input:focus { border-color: var(--accent); }
+.alm-field input::placeholder { color: var(--text-muted); }
+
+.alm-error {
+  background: rgba(255, 60, 60, 0.12);
+  border: 1px solid rgba(255, 60, 60, 0.3);
+  color: #ff6b6b;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+}
+
+.alm-hint {
+  background: rgba(255,107,53,0.08);
+  border: 1px solid rgba(255,107,53,0.2);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.alm-btn {
+  background: var(--accent);
+  border: none; color: white;
+  padding: 14px; border-radius: 12px;
+  font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(255,107,53,0.3);
+  margin-top: 4px;
+}
+.alm-btn:hover:not(:disabled) { background: var(--accent-hover); transform: translateY(-1px); }
+.alm-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.alm-cancel {
+  display: block; width: 100%; margin-top: 12px;
+  background: transparent; border: 1px solid var(--border);
+  color: var(--text-muted); padding: 11px; border-radius: 12px;
+  font-size: 14px; cursor: pointer; transition: all 0.2s;
+}
+.alm-cancel:hover { border-color: var(--text-muted); color: var(--text-primary); }

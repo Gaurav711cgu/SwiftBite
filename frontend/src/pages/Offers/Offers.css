@@ -1,0 +1,99 @@
+.offers { padding: 30px 0 60px; }
+
+.offers-hero {
+  text-align: center;
+  padding: 48px 20px;
+  margin-bottom: 36px;
+}
+
+.offers-hero h1 { font-size: clamp(28px, 5vw, 48px); font-weight: 800; color: var(--text-primary); margin-bottom: 12px; }
+.offers-hero p { color: var(--text-muted); font-size: 16px; }
+
+.offers-grid { display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto; }
+
+.offer-card {
+  display: flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.offer-card:hover { transform: translateY(-2px); }
+
+.offer-card-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+  min-width: 100px;
+  gap: 8px;
+}
+
+.offer-emoji { font-size: 36px; }
+.offer-expiry { font-size: 10px; color: var(--text-muted); text-align: center; font-weight: 600; }
+
+.offer-card-right { padding: 20px 24px; flex: 1; }
+
+.offer-card-right h3 { font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+.offer-card-right p { color: var(--text-muted); font-size: 13px; margin-bottom: 14px; line-height: 1.5; }
+
+.offer-code-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.offer-code {
+  border: 2px dashed;
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.copy-btn {
+  border: none;
+  color: white;
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.copy-btn:hover { opacity: 0.85; }
+
+.offers-cta {
+  text-align: center;
+  margin-top: 60px;
+  padding: 48px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  max-width: 800px;
+  margin: 60px auto 0;
+}
+
+.offers-cta h2 { font-size: 28px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+.offers-cta p { color: var(--text-muted); margin-bottom: 24px; }
+
+.offers-cta button {
+  background: var(--accent);
+  border: none;
+  color: white;
+  padding: 14px 40px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(255,107,53,0.3);
+}
+
+.offers-cta button:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+@media (max-width: 600px) {
+  .offer-card { flex-direction: column; }
+  .offer-card-left { flex-direction: row; justify-content: flex-start; padding: 16px; }
+}

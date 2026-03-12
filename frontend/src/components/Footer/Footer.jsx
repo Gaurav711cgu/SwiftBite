@@ -1,43 +1,65 @@
 import React from 'react'
 import './Footer.css'
-import { assets } from '../../assets/assets'
 
 const Footer = () => {
   return (
-    <div className='footer' id='footer'>
-      <div className="footer-content">
-        <div className="footer-content-left">
-          <div className='footer-brand'>
+    <footer className='footer' id='footer'>
+      <div className='footer-content'>
+        <div className='footer-col footer-brand-col'>
+          <div className='footer-logo'>
             <span className='brand-swift'>Swift</span><span className='brand-bite'>Bite</span>
           </div>
-          <p>SwiftBite delivers your favourite meals fast, fresh, and with a premium experience. Developed with passion by Gaurav Kumar Nayak.</p>
-          <div className="footer-social-icons">
-            <img src={assets.facebook_icon} alt="facebook" />
-            <img src={assets.twitter_icon} alt="twitter" />
-            <img src={assets.linkedin_icon} alt="linkedin" />
+          <p>Delivering happiness to your door. Fast, fresh, and delicious food from the best restaurants near you.</p>
+          <div className='footer-socials'>
+            <a href='#' className='social-btn'>📘</a>
+            <a href='#' className='social-btn'>🐦</a>
+            <a href='#' className='social-btn'>📸</a>
+            <a href='#' className='social-btn'>▶️</a>
+          </div>
+          <div className='footer-app-btns'>
+            <div className='app-btn'><span>▶</span><div><small>Get it on</small><b>Google Play</b></div></div>
+            <div className='app-btn'><span>🍎</span><div><small>Download on</small><b>App Store</b></div></div>
           </div>
         </div>
-        <div className="footer-content-center">
-          <h2>COMPANY</h2>
+
+        <div className='footer-col'>
+          <h3>Company</h3>
           <ul>
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Delivery</li>
-            <li>Privacy Policy</li>
+            <li><a href='#'>About Us</a></li>
+            <li><a href='#'>Careers</a></li>
+            <li><a href='#'>Team</a></li>
+            <li><a href='#'>Blog</a></li>
+            <li><a href='#'>Press</a></li>
           </ul>
         </div>
-        <div className="footer-content-right">
-          <h2>GET IN TOUCH</h2>
+
+        <div className='footer-col'>
+          <h3>Contact</h3>
           <ul>
-            <li>+91-98765-43210</li>
-            <li>gaurav@swiftbite.dev</li>
-            <li>India</li>
+            <li><a href='#'>Help & Support</a></li>
+            <li><a href='#'>Partner with Us</a></li>
+            <li><a href='#'>Ride with Us</a></li>
+            <li>📞 1800-123-4567</li>
+            <li>✉️ support@swiftbite.dev</li>
+          </ul>
+        </div>
+
+        <div className='footer-col'>
+          <h3>Legal</h3>
+          <ul>
+            <li><a href='#'>Terms & Conditions</a></li>
+            <li><a href='#'>Privacy Policy</a></li>
+            <li><a href='#'>Cookie Policy</a></li>
+            <li><a href='#'>Refund Policy</a></li>
           </ul>
         </div>
       </div>
-      <hr />
-      <p className="footer-copyright">Copyright 2025 © SwiftBite — Built by <span>Gaurav Kumar Nayak</span>. All Rights Reserved.</p>
-    </div>
+
+      <div className='footer-bottom'>
+        <p>© 2025 SwiftBite Technologies Pvt. Ltd. All rights reserved.</p>
+        <p>Built by <b>Gaurav Kumar Nayak</b></p>
+      </div>
+    </footer>
   )
 }
 
