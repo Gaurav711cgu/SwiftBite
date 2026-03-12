@@ -1,5 +1,27 @@
 import foodModel from "../models/foodModel.js";
-import fs from 'fs'
+import { v2 as cloudinary } from 'cloudinary';
+import streamifier from 'streamifier';
+
+// Cloudinary config (uses env variables)
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+// Helper: upload buffer to Cloudinary
+const uploadToCloudinary = (buffer) => {
+    return new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+            { folder: "swiftbite" },
+            (error, result) => {
+                if (result) resolve(result);
+                else reject(error);
+            }
+        );
+        streamifier.createReadStream(buffer).pipe(stream);
+    });
+};
 
 // all food list
 const listFood = async (req, res) => {
@@ -10,21 +32,20 @@ const listFood = async (req, res) => {
         console.log(error);
         res.json({ success: false, message: "Error" })
     }
-
 }
 
 // add food
 const addFood = async (req, res) => {
-
     try {
-        let image_filename = `${req.file.filename}`
+        // Upload image to Cloudinary
+        const result = await uploadToCloudinary(req.file.buffer);
 
         const food = new foodModel({
             name: req.body.name,
             description: req.body.description,
             price: req.body.price,
-            category:req.body.category,
-            image: image_filename,
+            category: req.body.category,
+            image: result.secure_url, // Cloudinary URL
         })
 
         await food.save();
@@ -38,18 +59,12 @@ const addFood = async (req, res) => {
 // delete food
 const removeFood = async (req, res) => {
     try {
-
-        const food = await foodModel.findById(req.body.id);
-        fs.unlink(`uploads/${food.image}`, () => { })
-
         await foodModel.findByIdAndDelete(req.body.id)
         res.json({ success: true, message: "Food Removed" })
-
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: "Error" })
     }
-
 }
 
 export { listFood, addFood, removeFood }
