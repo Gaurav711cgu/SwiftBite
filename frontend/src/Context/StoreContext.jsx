@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { food_list, menu_list } from "../assets/assets";
+import { menu_list } from "../assets/assets";
 import axios from "axios";
 export const StoreContext = createContext(null);
 
@@ -9,14 +9,14 @@ const StoreContextProvider = (props) => {
     const [food_list, setFoodList] = useState([]);
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("")
+    const [isLoading, setIsLoading] = useState(true);
     const currency = "$";
     const deliveryCharge = 5;
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
             setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
-        }
-        else {
+        } else {
             setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
         }
         if (token) {
@@ -35,21 +35,25 @@ const StoreContextProvider = (props) => {
         let totalAmount = 0;
         for (const item in cartItems) {
             try {
-              if (cartItems[item] > 0) {
-                let itemInfo = food_list.find((product) => product._id === item);
-                totalAmount += itemInfo.price * cartItems[item];
-            }  
-            } catch (error) {
-                
-            }
-            
+                if (cartItems[item] > 0) {
+                    let itemInfo = food_list.find((product) => product._id === item);
+                    totalAmount += itemInfo.price * cartItems[item];
+                }
+            } catch (error) {}
         }
         return totalAmount;
     }
 
     const fetchFoodList = async () => {
-        const response = await axios.get(url + "/api/food/list");
-        setFoodList(response.data.data)
+        setIsLoading(true);
+        try {
+            const response = await axios.get(url + "/api/food/list");
+            setFoodList(response.data.data);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     const loadCartData = async (token) => {
@@ -69,19 +73,9 @@ const StoreContextProvider = (props) => {
     }, [])
 
     const contextValue = {
-        url,
-        food_list,
-        menu_list,
-        cartItems,
-        addToCart,
-        removeFromCart,
-        getTotalCartAmount,
-        token,
-        setToken,
-        loadCartData,
-        setCartItems,
-        currency,
-        deliveryCharge
+        url, food_list, menu_list, cartItems, addToCart, removeFromCart,
+        getTotalCartAmount, token, setToken, loadCartData, setCartItems,
+        currency, deliveryCharge, isLoading
     };
 
     return (
@@ -89,7 +83,6 @@ const StoreContextProvider = (props) => {
             {props.children}
         </StoreContext.Provider>
     )
-
 }
 
 export default StoreContextProvider;

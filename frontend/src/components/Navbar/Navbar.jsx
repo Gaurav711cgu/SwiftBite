@@ -6,6 +6,7 @@ import { StoreContext } from '../../Context/StoreContext'
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
   const navigate = useNavigate();
 
@@ -15,19 +16,27 @@ const Navbar = ({ setShowLogin }) => {
     navigate('/')
   }
 
+  const scrollTo = (id, menuName) => {
+    setMenu(menuName);
+    setMobileOpen(false);
+    navigate('/');
+    setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 100);
+  }
+
   return (
     <div className='navbar'>
       <Link to='/' className='navbar-brand'>
         <span className='brand-swift'>Swift</span><span className='brand-bite'>Bite</span>
       </Link>
-      <ul className="navbar-menu">
-        <Link to="/" onClick={() => setMenu("home")} className={`${menu === "home" ? "active" : ""}`}>Home</Link>
-        <a href='#explore-menu' onClick={() => setMenu("menu")} className={`${menu === "menu" ? "active" : ""}`}>Menu</a>
-        <a href='#app-download' onClick={() => setMenu("mob-app")} className={`${menu === "mob-app" ? "active" : ""}`}>Mobile App</a>
-        <a href='#footer' onClick={() => setMenu("contact")} className={`${menu === "contact" ? "active" : ""}`}>Contact</a>
+
+      <ul className={`navbar-menu ${mobileOpen ? 'mobile-open' : ''}`}>
+        <Link to="/" onClick={() => { setMenu("home"); setMobileOpen(false); }} className={menu === "home" ? "active" : ""}>Home</Link>
+        <a onClick={() => scrollTo('explore-menu', 'menu')} className={menu === "menu" ? "active" : ""}>Menu</a>
+        <a onClick={() => scrollTo('app-download', 'mob-app')} className={menu === "mob-app" ? "active" : ""}>Mobile App</a>
+        <a onClick={() => scrollTo('footer', 'contact')} className={menu === "contact" ? "active" : ""}>Contact</a>
       </ul>
+
       <div className="navbar-right">
-        <img src={assets.search_icon} alt="search" />
         <Link to='/cart' className='navbar-search-icon'>
           <img src={assets.basket_icon} alt="cart" />
           <div className={getTotalCartAmount() > 0 ? "dot" : ""}></div>
@@ -43,6 +52,9 @@ const Navbar = ({ setShowLogin }) => {
               </ul>
             </div>
         }
+        <div className='hamburger' onClick={() => setMobileOpen(!mobileOpen)}>
+          <span></span><span></span><span></span>
+        </div>
       </div>
     </div>
   )
